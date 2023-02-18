@@ -19,21 +19,20 @@
     <h1 class="sr-only">Drag and drop Kanban board</h1>
     <main>
         <!-- INPUT START -->
-        <form id="form">
-            <label class="sr-only">Enter a new ToDo
-                <input type="text" name="input" id="input">
-            </label>
-            <button type="submit">Add +</button>
+        <form class="form" id="form">
+            <label for="input" class="sr-only">Enter a new ToDo</label>
+            <input type="text" placeholder="Add new todo" name="input" class="input" id="input">
+            <button type="submit" class="btn">Add +</button>
         </form>
-        <!-- INPUT END -->
         <!-- KANBAN BOARD START -->
         <div class="board">
+            <!-- INPUT END -->
             <!-- TODO LANE START -->
             <section class="lane" id="todo">
                 <h2 class="heading">ToDo</h2>
                 <p class="task" draggable="true">Workout</p>
             </section>
-            <!-- DOING LANE START -->
+            <!-- IN-PROGRESS LANE START -->
             <section class="lane">
                 <h2 class="heading">In-progress</h2>
                 <p class="task" draggable="true">Study</p>
