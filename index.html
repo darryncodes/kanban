@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kanban board | darryn-codes</title>
+    <!-- IMPORT STYLES AND SCRIPT -->
+    <link rel="stylesheet" href="./styles.css">
+    <script src="./app.js" defer></script>
+    <!-- GOOGLE FONT -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Mono&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <h1 class="sr-only">Drag and drop Kanban board</h1>
+    <main>
+        <!-- INPUT START -->
+        <form id="form">
+            <label class="sr-only">Enter a new ToDo
+                <input type="text" name="input" id="input">
+            </label>
+            <button type="submit">Add +</button>
+        </form>
+        <!-- INPUT END -->
+        <!-- KANBAN BOARD START -->
+        <div class="board">
+            <!-- TODO LANE START -->
+            <section class="lane" id="todo">
+                <h2 class="heading">ToDo</h2>
+                <p class="task" draggable="true">Workout</p>
+            </section>
+            <!-- DOING LANE START -->
+            <section class="lane">
+                <h2 class="heading">In-progress</h2>
+                <p class="task" draggable="true">Study</p>
+            </section>
+            <!-- DONE LANE START -->
+            <section class="lane">
+                <h2 class="heading">Done</h2>
+                <p class="task" draggable="true">Grocery shopping</p>
+            </section>
+        </div>
+        <!-- KANBAND BOARD END -->
+    </main>
+</body>
+
+</html>
