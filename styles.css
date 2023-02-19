@@ -74,6 +74,7 @@ main {
 
 .task {
     background-color: var(--clr-dark-400);
+    margin-bottom: 1rem;
     padding: 0.5rem;
     border: none;
     border-radius: var(--radius);
