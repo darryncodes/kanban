@@ -5,6 +5,8 @@ const form = document.getElementById("form");
 const input = document.getElementById("input");
 const todo = document.getElementById("todo");
 
+const taskBtn = document.querySelectorAll(".task-btn");
+
 // FUNCTION TO TURN STYLING ON AND OFF WHEN TASK IS BEING DRAGGED
 const handleStyle = (task) => {
     task.addEventListener("dragstart", () => {
@@ -60,10 +62,19 @@ const createTask = (e) => {
 
     if (!value) return;
 
-    const newTask = document.createElement("p");
+    const newTask = document.createElement("div");
     newTask.classList.add("task");
     newTask.setAttribute("draggable", "true");
-    newTask.innerText = value;
+
+    const content = document.createElement("p");
+    content.innerText = value;
+
+    const deleteBtn = document.createElement("button");
+    deleteBtn.classList.add("task-btn");
+    deleteBtn.innerText = "X";
+
+    newTask.appendChild(content);
+    newTask.appendChild(deleteBtn);
 
     handleStyle(newTask);
 
@@ -73,3 +84,11 @@ const createTask = (e) => {
 };
 
 form.addEventListener("submit", createTask);
+
+// DELETE TO DO
+
+document.addEventListener("click", function (e) {
+    if (e.target.classList.value === "task-btn") {
+        e.target.parentElement.remove();
+    }
+});
