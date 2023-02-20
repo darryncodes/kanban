@@ -7,7 +7,7 @@ const todo = document.getElementById("todo");
 
 const taskBtn = document.querySelectorAll(".task-btn");
 
-let actions = [];
+let actions;
 
 // FUNCTION TO TURN STYLING ON AND OFF WHEN TASK IS BEING DRAGGED
 const handleStyle = (task) => {
@@ -57,13 +57,25 @@ const insertAboveTask = (column, mouseY) => {
     return closestTask;
 };
 
-// ADD NEW TODO
+// CREATE NEW TODO
 const createTask = (e) => {
     e.preventDefault();
     const value = input.value;
 
     if (!value) return;
 
+    renderTask(value);
+
+    // SAVE TO LOCAL STORAGE
+    saveLocalTasks(value);
+
+    // RESET INPUT
+    input.value = "";
+};
+form.addEventListener("submit", createTask);
+
+// ABSTRACTED REND TODO LOGIC
+const renderTask = (value) => {
     const newTask = document.createElement("div");
     newTask.classList.add("task");
     newTask.setAttribute("draggable", "true");
@@ -81,39 +93,48 @@ const createTask = (e) => {
     handleStyle(newTask);
 
     todo.appendChild(newTask);
-
-    // CREATE OBJECT FOR LOCAL STORAGE
-    const action = {
-        id: Date.now(),
-        content: value,
-    };
-    actions.push(action);
-    addToLocalStorage(actions);
-
-    // RESET INPUT
-    input.value = "";
 };
 
-form.addEventListener("submit", createTask);
-
-// DELETE TO DO
-
-document.addEventListener("click", function (e) {
+// DELETE TODO
+const deleteFunction = (e) => {
     if (e.target.classList.value === "task-btn") {
-        e.target.parentElement.remove();
+        const task = e.target.parentElement;
+        removeLocalTasks(task);
+        task.remove();
     }
-});
+};
+document.addEventListener("click", deleteFunction);
 
-// LOCAL STORAGE
+// ABSTRACTED CHECK LOCAL STORAGE FUNCTION
+const checkLocalStorageArray = () => {
+    if (localStorage.getItem("actions") === null) {
+        actions = [];
+    } else {
+        actions = JSON.parse(localStorage.getItem("actions"));
+    }
+};
 
-const addToLocalStorage = (actions) => {
+const saveLocalTasks = (action) => {
+    checkLocalStorageArray();
+
+    actions.push(action);
     localStorage.setItem("actions", JSON.stringify(actions));
 };
 
-const getFromLocalStorage = () => {
-    const data = localStorage.getItem("actions");
+const getLocalTasks = () => {
+    checkLocalStorageArray();
 
-    if (data) {
-        actions = JSON.parse(data);
-    }
+    actions.forEach((task) => {
+        renderTask(task);
+    });
+};
+
+window.onload = getLocalTasks;
+
+const removeLocalTasks = (task) => {
+    checkLocalStorageArray();
+
+    const taskIndex = task.children[0].innerText;
+    actions.splice(actions.indexOf(taskIndex), 1);
+    localStorage.setItem("actions", JSON.stringify(actions));
 };
