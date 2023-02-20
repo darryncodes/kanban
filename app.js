@@ -7,6 +7,8 @@ const todo = document.getElementById("todo");
 
 const taskBtn = document.querySelectorAll(".task-btn");
 
+let actions = [];
+
 // FUNCTION TO TURN STYLING ON AND OFF WHEN TASK IS BEING DRAGGED
 const handleStyle = (task) => {
     task.addEventListener("dragstart", () => {
@@ -80,6 +82,15 @@ const createTask = (e) => {
 
     todo.appendChild(newTask);
 
+    // CREATE OBJECT FOR LOCAL STORAGE
+    const action = {
+        id: Date.now(),
+        content: value,
+    };
+    actions.push(action);
+    addToLocalStorage(actions);
+
+    // RESET INPUT
     input.value = "";
 };
 
@@ -92,3 +103,17 @@ document.addEventListener("click", function (e) {
         e.target.parentElement.remove();
     }
 });
+
+// LOCAL STORAGE
+
+const addToLocalStorage = (actions) => {
+    localStorage.setItem("actions", JSON.stringify(actions));
+};
+
+const getFromLocalStorage = () => {
+    const data = localStorage.getItem("actions");
+
+    if (data) {
+        actions = JSON.parse(data);
+    }
+};
