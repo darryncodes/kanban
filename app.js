@@ -74,11 +74,13 @@ const createTask = (e) => {
 };
 form.addEventListener("submit", createTask);
 
-// ABSTRACTED REND TODO LOGIC
+// ABSTRACTED RENDER TODO LOGIC
 const renderTask = (value) => {
+    const color = hexGenerator();
     const newTask = document.createElement("div");
     newTask.classList.add("task");
     newTask.setAttribute("draggable", "true");
+    newTask.style.borderTop = `3px solid ${color}`;
 
     const content = document.createElement("p");
     content.innerText = value;
@@ -128,7 +130,6 @@ const getLocalTasks = () => {
         renderTask(task);
     });
 };
-
 window.onload = getLocalTasks;
 
 const removeLocalTasks = (task) => {
@@ -138,3 +139,20 @@ const removeLocalTasks = (task) => {
     actions.splice(actions.indexOf(taskIndex), 1);
     localStorage.setItem("actions", JSON.stringify(actions));
 };
+
+// RANDOM HEX COLOUR GENERATOR FOR TASK BORDER
+const hex = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, "A", "B", "C", "D", "E", "F"];
+
+function getRandomNumber() {
+    return Math.floor(Math.random() * hex.length);
+}
+
+function hexGenerator() {
+    let hexColor = "#";
+
+    for (let i = 0; i < 6; i++) {
+        hexColor += hex[getRandomNumber()];
+    }
+
+    return hexColor;
+}
