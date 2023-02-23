@@ -166,3 +166,10 @@ addTodoBtn.addEventListener("click", () => {
     form.classList.toggle("show");
     overlay.classList.toggle("overlay");
 });
+
+document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+        form.classList.remove("show");
+        overlay.classList.remove("overlay");
+    }
+});
