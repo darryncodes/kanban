@@ -81,6 +81,12 @@ main {
     /* min-height: 100vh; */
 }
 
+@media (min-width: 624px) and (max-width: 927px) {
+    .done {
+        grid-column: span 2;
+    }
+}
+
 .heading {
     font-size: 1.875rem;
     line-height: 1;
