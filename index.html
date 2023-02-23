@@ -6,9 +6,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kanban board | darryn-codes</title>
-    <!-- IMPORT STYLES AND SCRIPT -->
+    <!-- IMPORT STYLES AND SCRIPTS -->
     <link rel="stylesheet" href="./styles.css">
     <script src="./app.js" defer></script>
+    <script src="./DragDropTouch.js" defer></script>
     <!-- GOOGLE FONT -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,22 +19,11 @@
 <body>
     <h1 class="sr-only">Drag and drop Kanban board</h1>
     <main>
-        <!-- INPUT START -->
-        <form class="form" id="form">
-            <label for="input" class="sr-only">Enter a new ToDo</label>
-            <input type="text" placeholder="Add new todo" name="input" class="input" id="input">
-            <button type="submit" class="btn">Add +</button>
-        </form>
-        <!-- INPUT END -->
         <!-- KANBAN BOARD START -->
         <div class="board">
             <!-- TODO LANE START -->
             <section class="lane" id="todo">
-                <h2 class="heading">ToDo</h2>
-                <!-- <div class="task" draggable="true">
-                    <p>Workout</p>
-                    <button class="task-btn">X</button>
-                </div> -->
+                <h2 class="heading">To do</h2>
             </section>
             <!-- IN-PROGRESS LANE START -->
             <section class="lane">
@@ -46,7 +36,19 @@
         </div>
         <!-- KANBAND BOARD END -->
     </main>
+    <div id="overlay">
+        <!-- TODO ADD BUTTON -->
+        <button id="todo-btn" class="todo-btn">
+            <span class="top"></span>
+            <span class="bottom"></span>
+        </button>
+        <!-- INPUT START -->
+        <form class="form" id="form">
+            <label for="input" class="sr-only">Enter a new To do</label>
+            <input type="text" placeholder="Add new todo" name="input" class="input" id="input">
+            <button type="submit" class="btn">Add +</button>
+        </form>
+    </div>
 </body>
-<script src="./DragDropTouch.js"></script>
 
 </html>

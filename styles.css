@@ -25,7 +25,23 @@ main {
 }
 
 .form {
-    margin-bottom: 1rem;
+    display: none;
+    max-width: 10rem;
+    position: fixed;
+    bottom: 100px;
+    right: 85px;
+}
+
+@media only screen and (min-width: 624px) {
+    .form {
+        bottom: 115px;
+        right: 100px;
+    }
+}
+
+.form.show {
+    display: grid;
+    gap: 1rem;
 }
 
 .input {
@@ -96,6 +112,67 @@ main {
     scale: 1.05;
     color: var(--clr-neutral-100);
     background-color: var(--clr-accent);
+}
+
+/* ADD TODO BUTTON */
+
+.overlay {
+    position: fixed;
+    z-index: 1;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.todo-btn {
+    border: none;
+    border-radius: 50%;
+    position: fixed;
+    bottom: 15px;
+    right: 15px;
+    background-color: var(--clr-accent);
+    height: 60px;
+    width: 60px;
+    cursor: pointer;
+}
+
+.todo-btn-bg {
+    background-color: var(--clr-dark-400);
+}
+
+@media only screen and (min-width: 624px) {
+    .todo-btn {
+        bottom: 30px;
+        right: 30px;
+    }
+}
+
+.top,
+.bottom {
+    position: absolute;
+    top: 30px;
+    left: 15px;
+    width: 30px;
+    height: 2px;
+    background: hsl(0, 0%, 100%);
+    transform: rotate(0);
+    transition: all 0.3s;
+}
+
+.bottom {
+    transform: rotate(90deg);
+}
+
+.open {
+    transform: rotate(90deg);
+    transform: translateY(0px);
+}
+
+.open .top {
+    transform: rotate(45deg);
+}
+
+.open .bottom {
+    transform: rotate(-45deg);
 }
 
 /* SCREEN READER ONLY */

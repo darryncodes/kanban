@@ -6,6 +6,8 @@ const input = document.getElementById("input");
 const todo = document.getElementById("todo");
 
 const taskBtn = document.querySelectorAll(".task-btn");
+const addTodoBtn = document.getElementById("todo-btn");
+const overlay = document.getElementById("overlay");
 
 let actions;
 
@@ -156,3 +158,11 @@ function hexGenerator() {
 
     return hexColor;
 }
+
+// MENU FUNCTIONALITY
+addTodoBtn.addEventListener("click", () => {
+    addTodoBtn.classList.toggle("open");
+    addTodoBtn.classList.toggle("todo-btn-bg");
+    form.classList.toggle("show");
+    overlay.classList.toggle("overlay");
+});
